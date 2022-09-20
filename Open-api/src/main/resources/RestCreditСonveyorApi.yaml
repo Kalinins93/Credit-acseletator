@@ -1,0 +1,228 @@
+openapi: 3.0.0
+info:
+  description: "Rest API Кредитный Конвейер"
+  version: "1.0.0"
+  title: "RestCreditСonveyor"
+  contact:
+    email: "ilkalinin@neoflex.ru"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+  - name: "RestCreditСonveyor"
+    description: "Прием заявок на кредит"
+paths:
+  /conveyor/offers:
+    description: "Расчёт возможных условий кредита."
+    post:
+      tags:
+        - "rest-conveyor-offers-request"
+      summary: "Сообщение-запрос на расчёт возможных условий кредита."
+      operationId: "RestReceiveRequestConveyorOffers"
+      requestBody:
+        description: "Запрос RestReceiveRequestConveyorOffers"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanApplicationRequestDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanOfferDTO'
+components:
+  schemas:
+    LoanApplicationRequestDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "amount":
+          type: "number"
+        "term":
+          type: "number"
+        "firstName":
+          type: "string"
+        "lastName":
+          type: "string"
+        "middleName":
+          type: "string"
+        "email":
+          type: "string"
+        "birthdate":
+          type: string
+          format: date
+        "passportSeries":
+          type: "string"
+        "passportNumber":
+          type: "string"
+    LoanOfferDTO:
+      type: "object"
+      description: "Ответ возможные условия кредита"
+      properties:
+        id:
+          type: "integer"
+          description: "Уникальный ID заявки"
+        "applicationId":
+          type: "integer"
+        "requestedAmount":
+          type: "number"
+        "totalAmount":
+          type: "number"
+        "term":
+          type: "integer"
+        "monthlyPayment":
+          type: "number"
+        "rate":
+          type: "number"
+        "isInsuranceEnabled":
+          type: "boolean"
+        "isSalaryClient":
+          type: "boolean"
+    ScoringDataDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредит2а."
+      properties:
+        "amount":
+          type: "number"
+        "term":
+          type: "integer"
+        "firstName":
+          type: "string"
+        "lastName":
+          type: "string"
+        "middleName":
+          type: "string"
+        "gender":
+          type: string
+          enum: [male, female]
+        "birthdate":
+          type: string
+          format: date
+        "passportSeries":
+          type: "string"
+        "passportNumber":
+          type: "string"
+        "passportIssueDate":
+          type: string
+          format: date
+        "passportIssueBranch":
+          type: "string"
+        "maritalStatus":
+          type: string
+          enum: [open, close]
+        "dependentAmount":
+          type: "integer"
+        "employment":
+          $ref: '#/components/schemas/LoanApplicationRequestDTO'
+        "account":
+          type: "string"
+        "isInsuranceEnabled":
+          type: "boolean"
+        "isSalaryClient":
+          type: "boolean"
+    CreditDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "amount":
+          type: "number"
+        "term":
+          type: "integer"
+        "monthlyPayment":
+          type: "number"
+        "rate":
+          type: "number"
+        "psk":
+          type: "number"
+        "isInsuranceEnabled":
+          type: "boolean"
+        "isSalaryClient":
+          type: "boolean"
+        "paymentSchedule":
+          items:
+            $ref: '#/components/schemas/PaymentScheduleElement'
+    FinishRegistrationRequestDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "gender":
+          type: string
+          enum: [male, female]
+        "maritalStatus":
+          type: string
+          enum: [open, close]
+        "dependentAmount":
+          type: "integer"
+        "passportIssueDate":
+          type: string
+          format: date
+        "passportIssueBrach":
+          type: "string"
+        "employment":
+          $ref: "#/components/schemas/EmploymentDTO"
+        "account":
+          type: "string"
+    EmploymentDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "employmentStatus":
+          type: string
+          enum: [open, close]
+        "employerINN":
+          type: "string"
+        "salary":
+          type: "number"
+        "position":
+          type: "string"
+          enum: [test, et]
+        "workExperienceTotal":
+          type: "integer"
+        "workExperienceCurrent":
+          type: "integer"
+    PaymentScheduleElement:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "number":
+          type: "integer"
+        "date":
+          type: string
+          format: date
+        "totalPayment":
+          type: "bigDecimal"
+        "interestPayment":
+          type: "bigDecimal"
+        "debtPayment":
+          type: "bigDecimal"
+        "remainingDebt":
+          type: "bigDecimal"
+    ApplicationStatusHistoryDTO:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "status":
+          type: string
+          enum: [open, close]
+        "time":
+          type: string
+          format: date
+        "changeType":
+          type: string
+          enum: [type1, type2]
+    EmailMessage:
+      type: "object"
+      description: "Заявка на расчёт возможных условий кредита."
+      properties:
+        "address":
+          type: "string"
+        "theme":
+          type: string
+          enum: [theme1, theme2]
+        "applicationId":
+          type: number
