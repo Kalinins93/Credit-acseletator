@@ -12,6 +12,29 @@ tags:
   - name: "RestCreditСonveyor"
     description: "Прием заявок на кредит"
 paths:
+  /conveyor/calculation:
+    description: "Валидация присланных данных + скоринг данныполный расчет параметров кредита."
+    post:
+      tags:
+        - "rest-conveyor-offers-request"
+      summary: "Сообщение-запрос на валидацию присланных данных + скоринг данных + полный расчет параметров кредита."
+      operationId: "RestReceiveRequestConveyorСalculation"
+      requestBody:
+        description: "Запрос RestReceiveRequestConveyorСalculation"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringDataDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditDTO'
   /conveyor/offers:
     description: "Расчёт возможных условий кредита."
     post:
@@ -42,9 +65,9 @@ components:
       description: "Заявка на расчёт возможных условий кредита."
       properties:
         "amount":
-          type: "number"
+          type: "BigDecimal"
         "term":
-          type: "number"
+          type: "Integer"
         "firstName":
           type: "string"
         "lastName":
@@ -99,7 +122,7 @@ components:
           type: "string"
         "gender":
           type: string
-          enum: [male, female]
+          enum: [male, female,Not binary]
         "birthdate":
           type: string
           format: date
@@ -114,11 +137,11 @@ components:
           type: "string"
         "maritalStatus":
           type: string
-          enum: [open, close]
+          enum: [Married, Unmarried,Divorced]
         "dependentAmount":
           type: "integer"
         "employment":
-          $ref: '#/components/schemas/LoanApplicationRequestDTO'
+          $ref: '#/components/schemas/EmploymentDTO'
         "account":
           type: "string"
         "isInsuranceEnabled":
@@ -173,14 +196,14 @@ components:
       properties:
         "employmentStatus":
           type: string
-          enum: [open, close]
+          enum: [self-employed, workless,working,businessman]
         "employerINN":
           type: "string"
         "salary":
           type: "number"
         "position":
           type: "string"
-          enum: [test, et]
+          enum: [middle-manager, top-manager]
         "workExperienceTotal":
           type: "integer"
         "workExperienceCurrent":

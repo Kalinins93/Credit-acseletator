@@ -48,19 +48,19 @@ openApiGenerate {
             apis                     : "",
             models                   : "",
             hideGenerationTimestamp  : "false",
-            supportingFiles          : "false"
+            supportingFiles          : "false",
+
     ]
 
     additionalProperties = [
             interfaceOnly         : 'true',
-            reactive              : 'false',
             skipDefaultInterface  : "true",
             implicitHeaders       : "true",
     ]
 
     configOptions = [
             useOptional           : "true",
-            dateLibrary           : 'java11',
+            dateLibrary           : 'java17',
             serializableModel     : "false",
             swaggerDocketConfig   : 'true',
             invokerPackage        : "ru.neoflex.openapi.api", // change if needed

@@ -1,7 +1,12 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.eclipse.jkube.kubernetes' version '1.8.0'
+    id 'org.eclipse.jkube.openshift' version '1.8.0'
 }
-
+group 'ru.neoflex'
+version '1.0-SNAPSHOT'
 
 
 repositories {
@@ -9,8 +14,21 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+    implementation 'org.springframework.kafka:spring-kafka:2.7.6'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+    testImplementation 'io.projectreactor:reactor-test:3.3.22.RELEASE'
+    testImplementation 'org.springframework.kafka:spring-kafka-test:2.7.6'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.data:spring-data-commons'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation 'org.slf4j:slf4j-api:1.7.26'
+    implementation project(":Open-api")
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.2'
+
 }
 
 test {
