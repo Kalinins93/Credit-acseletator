@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
     implementation 'org.springframework.kafka:spring-kafka:2.7.6'
+    implementation 'org.apache.royale.framework:royale-simple-typedef-archetype:0.9.9'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
     testImplementation 'io.projectreactor:reactor-test:3.3.22.RELEASE'
     testImplementation 'org.springframework.kafka:spring-kafka-test:2.7.6'

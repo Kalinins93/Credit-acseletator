@@ -12,6 +12,68 @@ tags:
   - name: "RestCreditСonveyor"
     description: "Прием заявок на кредит"
 paths:
+  /deal/calculate/{applicationId}:
+    description: "Выбор одного из предложений"
+    put:
+      tags:
+        - "rest-conveyor-offers-request"
+      parameters:
+        - name: applicationId
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      summary: "Выбор одного из предложений"
+      requestBody:
+        description: "Запрос RestReceiveRequestDealCalculate"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinishRegistrationRequestDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
+  /deal/offer:
+    description: "Выбор одного из предложений"
+    put:
+      tags:
+        - "rest-conveyor-offers-request"
+      summary: "Выбор одного из предложений"
+      requestBody:
+        description: "Запрос RestReceiveRequestConveyorСalculation"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanOfferDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
+  /deal/application:
+    description: "Расчет параметров кредита."
+    post:
+      tags:
+        - "rest-conveyor-offers-request"
+      summary: "Полный расчет параметров кредита."
+      requestBody:
+        description: "Запрос RestReceiveRequestConveyorСalculation"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanApplicationRequestDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanOfferDTO'
   /conveyor/calculation:
     description: "Валидация присланных данных + скоринг данныполный расчет параметров кредита."
     post:
@@ -55,7 +117,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: "object"
                 items:
                   $ref: '#/components/schemas/LoanOfferDTO'
 components:

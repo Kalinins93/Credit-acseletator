@@ -37,6 +37,7 @@ sourceSets {
 }
 openApiValidate {
     inputSpec = "$rootDir/Open-api/src/main/resources/RestCreditСonveyorApi.yaml".toString()
+
 }
 openApiGenerate {
     generatorName = "spring"
@@ -56,8 +57,17 @@ openApiGenerate {
             interfaceOnly         : 'true',
             skipDefaultInterface  : "true",
             implicitHeaders       : "true",
-    ]
 
+    ]
+    typeMappings = [
+            'double': 'java.math.BigDecimal',
+            'date': 'java.time.LocalDate',
+            'date-time': 'java.time.LocalDateTime',
+            'Date': 'LocalDateTime'
+    ]
+    importMappings= [
+            'java.util.Date':'java.time.LocalDateTime'
+      ]
     configOptions = [
             useOptional           : "true",
             dateLibrary           : 'java17',
@@ -74,6 +84,7 @@ openApiGenerate {
             singleContentTypes    : "true",
             title                 : rootProject.name,
             java8                : "true",
+
     ]
 }
 test {

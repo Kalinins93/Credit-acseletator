@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ConveyorService {
     public List<LoanOfferDTO> preScoring(LoanApplicationRequestDTO loanApplicationRequestDTO);
-    public List<CreditDTO> scoring(ScoringDataDTO scoringDataDTO);
+    public CreditDTO scoring(ScoringDataDTO scoringDataDTO);
 }
