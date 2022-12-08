@@ -1,0 +1,25 @@
+server.port: 8084
+Amount: 10000
+Term: 6
+general-rate: 8
+increasing-without-insurance: 3
+increasing-not-salary-client: 1
+sum-insurance: 10000
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.hibernate.show_sql: true
+spring.datasource:
+  url: 'jdbc:postgresql://localhost:5432/dealDb'
+  username: postgres
+  password: postgres
+  driver-class:
+    jdbc:
+      driver: org.postgresql.Driver
+Conveyor:
+  url: 'http://localhost:8083'
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
