@@ -1,7 +1,9 @@
 package ru.neoflex.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.neoflex.match.CreditInformationService;
 import ru.neoflex.openapi.model.LoanApplicationRequestDTO;
 import ru.neoflex.openapi.model.LoanOfferDTO;
 
@@ -22,14 +24,11 @@ public class LoanOfferDTOServiceImpl implements LoanOfferDTOService {
     private BigDecimal increasingIsNotSalaryClient;
     @Value("${sum-insurance}")
     private BigDecimal sumInsurance;
-    private List<LoanOfferDTO> offerDTOList;
-
-    public LoanOfferDTOServiceImpl() {
-        this.offerDTOList = new ArrayList<>();
-    }
-
+    @Autowired
+    private CreditInformationService creditInformationService;
     @Override
     public List<LoanOfferDTO> getListLoanOfferDTO(LoanApplicationRequestDTO loanApplicationRequestDTO) {
+        List<LoanOfferDTO> offerDTOList= new ArrayList<LoanOfferDTO>();
         LoanOfferDTO loanOfferDTOWithOutInsuranceAndIsNotSalary = this.getLoanOffer(loanApplicationRequestDTO, false, false);
         LoanOfferDTO loanOfferDTOInsuranceAndIsNotSalary = this.getLoanOffer(loanApplicationRequestDTO, true, false);
         LoanOfferDTO loanOfferDTOWithOutInsuranceAndIsSalary = this.getLoanOffer(loanApplicationRequestDTO, false, true);
@@ -63,8 +62,11 @@ public class LoanOfferDTOServiceImpl implements LoanOfferDTOService {
                                         generalRate.add(increasingIsNotSalaryClient).add(increasingWithoutInsurance)
         );
         BigDecimal sumInsuranceAll = sumInsurance.multiply(new BigDecimal(loanApplicationRequestDTO.getTerm()).divide(new BigDecimal(12), 2, RoundingMode.CEILING));
-        anyBodyLoanOfferDTO.setTotalAmount(anyBodyLoanOfferDTO.getRequestedAmount().multiply(anyBodyLoanOfferDTO.getRate().divide(BigDecimal.valueOf(100))).add(anyBodyLoanOfferDTO.getRequestedAmount()).add(sumInsuranceAll));
-        anyBodyLoanOfferDTO.setMonthlyPayment(anyBodyLoanOfferDTO.getTotalAmount().divide(new BigDecimal(loanApplicationRequestDTO.getTerm()), 2, RoundingMode.CEILING));
+        anyBodyLoanOfferDTO.setTotalAmount(
+                anyBodyLoanOfferDTO.getIsInsuranceEnabled()?
+                        creditInformationService.GetPSk(anyBodyLoanOfferDTO.getRate(),anyBodyLoanOfferDTO.getRequestedAmount(),anyBodyLoanOfferDTO.getTerm()).add(sumInsuranceAll):
+                        creditInformationService.GetPSk(anyBodyLoanOfferDTO.getRate(),anyBodyLoanOfferDTO.getRequestedAmount(),anyBodyLoanOfferDTO.getTerm()));
+        anyBodyLoanOfferDTO.setMonthlyPayment(creditInformationService.getMonthPaymant(anyBodyLoanOfferDTO.getRate(),anyBodyLoanOfferDTO.getRequestedAmount(), anyBodyLoanOfferDTO.getTerm()));
         return anyBodyLoanOfferDTO;
     }
 }

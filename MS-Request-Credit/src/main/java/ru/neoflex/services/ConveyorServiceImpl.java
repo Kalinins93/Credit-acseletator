@@ -3,16 +3,13 @@ package ru.neoflex.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.neoflex.match.CreditInformationService;
 import ru.neoflex.openapi.model.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 @Service
 public class ConveyorServiceImpl implements ConveyorService {
@@ -24,6 +21,8 @@ public class ConveyorServiceImpl implements ConveyorService {
     private BigDecimal generalRate;
     @Autowired
     private LoanOfferDTOServiceImpl loanOfferDTOService;
+    @Autowired
+    private CreditInformationService creditInformationService;
 
     @Override    public List<LoanOfferDTO> preScoring(LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
@@ -104,48 +103,10 @@ public class ConveyorServiceImpl implements ConveyorService {
         creditDTO.setTerm(scoringDataDTO.getTerm());
         creditDTO.setIsInsuranceEnabled(scoringDataDTO.getIsInsuranceEnabled());
         creditDTO.setIsSalaryClient(scoringDataDTO.getIsSalaryClient());
-        double mounthRate = (creditDTO.getRate().doubleValue() / 12) / 100;
-        double koffeciantAutet = (mounthRate * Math.pow((1 + mounthRate), creditDTO.getTerm())) / (Math.pow((1 + mounthRate), creditDTO.getTerm()) - 1);
-        double procent=0;
-        creditDTO.setMonthlyPayment(scoringDataDTO.getAmount().multiply(BigDecimal.valueOf(koffeciantAutet)));
         creditDTO.setAmount(scoringDataDTO.getAmount());
-        List<PaymentScheduleElement> paymentScheduleElementList = new ArrayList<PaymentScheduleElement>();
-        Calendar dateForPayment = Calendar.getInstance();
-        TimeZone tz = dateForPayment .getTimeZone();
-        ZoneId zid = tz == null ? ZoneId.systemDefault() : tz.toZoneId();
-        for (int i = 0; i < creditDTO.getTerm(); i++) {
-            if (i == 0) {
-                PaymentScheduleElement paymentScheduleElement = new PaymentScheduleElement();
-                paymentScheduleElement.setTotalPayment(creditDTO.getMonthlyPayment());
-                paymentScheduleElement.setNumber(i + 1);
-                paymentScheduleElement.setDate(LocalDate.now());
-                paymentScheduleElement.setInterestPayment(creditDTO.getAmount().multiply(BigDecimal.valueOf(mounthRate)));
-                procent= paymentScheduleElement.getInterestPayment().doubleValue();
-                paymentScheduleElement.setDebtPayment(creditDTO.getMonthlyPayment().add(paymentScheduleElement.getInterestPayment().negate()));
-                paymentScheduleElement.setRemainingDebt(creditDTO.getAmount().add(paymentScheduleElement.getDebtPayment().negate()));
-                paymentScheduleElementList.add(paymentScheduleElement);
-
-            } else {
-                int n = i - 1;
-                PaymentScheduleElement paymentScheduleElement = new PaymentScheduleElement();
-                paymentScheduleElement.setNumber(i + 1);
-                dateForPayment.add(Calendar.MONTH, 1);
-                paymentScheduleElement.setDate(LocalDate.ofInstant(dateForPayment.toInstant(),zid));
-                paymentScheduleElement.setInterestPayment(paymentScheduleElementList.get(n).getRemainingDebt().multiply(BigDecimal.valueOf(mounthRate)));
-                procent= procent+ paymentScheduleElement.getInterestPayment().doubleValue();
-                paymentScheduleElement.setDebtPayment(creditDTO.getMonthlyPayment().add(paymentScheduleElement.getInterestPayment().negate()));
-                paymentScheduleElement.setRemainingDebt(paymentScheduleElementList.get(n).getRemainingDebt().add(paymentScheduleElement.getDebtPayment().negate()));
-                paymentScheduleElement.setTotalPayment(creditDTO.getMonthlyPayment());
-                if ((i == creditDTO.getTerm() - 1)) {
-                    paymentScheduleElement.setRemainingDebt(BigDecimal.ZERO);
-                } else {
-                    paymentScheduleElement.setRemainingDebt(paymentScheduleElementList.get(n).getRemainingDebt().add(paymentScheduleElement.getDebtPayment().negate()));
-                }
-                paymentScheduleElementList.add(paymentScheduleElement);
-            }
-        }
-        creditDTO.setPaymentSchedule(paymentScheduleElementList);
-        creditDTO.setPsk(creditDTO.getAmount().add(BigDecimal.valueOf(procent)));
+        creditDTO.setMonthlyPayment(creditInformationService.getMonthPaymant(creditDTO.getRate(),creditDTO.getAmount(),scoringDataDTO.getTerm()));
+        creditDTO.setPaymentSchedule(creditInformationService.getListPaymentScheduleElement(creditDTO.getTerm(),creditDTO.getAmount(), creditDTO.getRate()));
+        creditDTO.setPsk(creditInformationService.GetPSk(creditDTO.getRate(),creditDTO.getAmount(),creditDTO.getTerm()));
         return creditDTO;
     }
 
