@@ -26,19 +26,10 @@ public class DealApiIml implements DealApi {
     public ResponseEntity<List<LoanOfferDTO>> dealApplicationPost(LoanApplicationRequestDTO loanApplicationRequestDTO) {
         Client client = mapper.mappingClient(loanApplicationRequestDTO);
         Passport passport = mapper.mappingPassport(loanApplicationRequestDTO);
-       // passport.setClient(client);
         client.setPassport(passport);
-        Employment employment = new Employment();
-        employment.setStatus(EmploymentDTO.EmploymentStatusEnum.WORKLESS);
-        client.setEmployment(employment);
         Application application = new Application();
         application.setClient(client);
         dealService.addClient(client);
-        Credit credit = new Credit();
-        credit.setCreditStatus(CreditStatus.ISSUED);
-        credit.setAmount(loanApplicationRequestDTO.getAmount());
-        dealService.addCredit(credit);
-        application.setCredit(credit);
         StatusHistory statusHistory = new StatusHistory();
         statusHistory.setStatus("HZ");
         statusHistory.setTime(LocalDate.now());

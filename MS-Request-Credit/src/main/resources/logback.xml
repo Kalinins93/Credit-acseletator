@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="appName" value="MS-Request-Credit-ScoringAndPrescoring"/>
+    <!-- При необходимости эти поля могут быть изменены -->
+    <property name="encProvider" value="encProvider"/>
+    <appender name="TCP" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>logstash-v2:5000</destination>
+        <includeCallerData>true</includeCallerData>
+        <reconnectionDelay>5000</reconnectionDelay>
+    </appender>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss}[%thread]%-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+	<root level="${APP_LOGGING_LEVEL:-INFO}">
+        <appender-ref ref="TCP"/>
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

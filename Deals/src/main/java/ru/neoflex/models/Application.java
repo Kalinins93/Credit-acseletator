@@ -28,7 +28,7 @@ public class Application {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "credit_id", nullable = false)
+    @JoinColumn(name = "credit_id", nullable = true)
     private Credit credit;
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;

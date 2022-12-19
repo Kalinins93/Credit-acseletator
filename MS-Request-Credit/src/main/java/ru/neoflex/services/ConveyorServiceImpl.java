@@ -13,11 +13,11 @@ import java.util.List;
 
 @Service
 public class ConveyorServiceImpl implements ConveyorService {
-    @Value("${Amount}")
+    @Value("${business-property.amount}")
     private BigDecimal amount;
-    @Value("${Term}")
+    @Value("${business-property.term}")
     private Integer term;
-    @Value("${general-rate}")
+    @Value("${business-property.general-rate}")
     private BigDecimal generalRate;
     @Autowired
     private LoanOfferDTOServiceImpl loanOfferDTOService;

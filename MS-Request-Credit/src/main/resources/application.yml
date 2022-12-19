@@ -1,7 +1,8 @@
+business-property:
+  amount: 10000
+  term: 6
+  general-rate: 8
+  increasing-without-insurance: 3
+  increasing-not-salary-client: 1
+  sum-insurance: 10000
 server.port: 8083
-Amount: 10000
-Term: 6
-general-rate: 8
-increasing-without-insurance: 3
-increasing-not-salary-client: 1
-sum-insurance: 10000

@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class LoanOfferDTOServiceImpl implements LoanOfferDTOService {
-    @Value("${general-rate}")
+    @Value("${business-property.general-rate}")
     private BigDecimal generalRate;
-    @Value("${increasing-without-insurance}")
+    @Value("${business-property.increasing-without-insurance}")
     private BigDecimal increasingWithoutInsurance;
-    @Value("${increasing-not-salary-client}")
+    @Value("${business-property.increasing-not-salary-client}")
     private BigDecimal increasingIsNotSalaryClient;
-    @Value("${sum-insurance}")
+    @Value("${business-property.sum-insurance}")
     private BigDecimal sumInsurance;
     @Autowired
     private CreditInformationService creditInformationService;

@@ -8,14 +8,14 @@ sum-insurance: 10000
 spring.jpa.hibernate.ddl-auto: update
 spring.jpa.hibernate.show_sql: true
 spring.datasource:
-  url: 'jdbc:postgresql://localhost:5432/dealDb'
+  url: 'jdbc:postgresql://postgresql:5432/dealDb'
   username: postgres
   password: postgres
   driver-class:
     jdbc:
       driver: org.postgresql.Driver
 Conveyor:
-  url: 'http://localhost:8083'
+  url: 'http://ms-request-credit:8083'
 spring:
   mvc:
     pathmatch:

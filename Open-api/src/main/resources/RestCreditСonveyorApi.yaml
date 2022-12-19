@@ -90,13 +90,11 @@ paths:
               $ref: '#/components/schemas/ScoringDataDTO'
       responses:
         '200':
-          description: "Успешный ответ о принятие сообщения"
+          description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CreditDTO'
+                $ref: '#/components/schemas/CreditDTO'
   /conveyor/offers:
     description: "Расчёт возможных условий кредита."
     post:
@@ -117,7 +115,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
+                type: array
                 items:
                   $ref: '#/components/schemas/LoanOfferDTO'
 components:

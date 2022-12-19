@@ -2,4 +2,6 @@ rootProject.name = 'Credit-acseletator'
 include 'Open-api'
 include 'MS-Request-Credit'
 include 'Deals'
+include 'gateway'
+include 'JWTServer'
 
