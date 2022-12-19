@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="AutomaticModuleUnloader">
+    <loaded-modules>
+      <module name="ru.neoflex.Credit-acseletator" />
+      <module name="Credit-acseletator.MS-Request-Credit.test" />
+      <module name="Credit-acseletator.Open-api.test" />
+      <module name="Credit-acseletator" />
+      <module name="Credit-acseletator.MS-Request-Credit.main" />
+      <module name="Credit-acseletator.Open-api" />
+      <module name="ru.neoflex.Credit-acseletator.test" />
+      <module name="ru.neoflex.Credit-acseletator.main" />
+      <module name="Credit-acseletator.MS-Request-Credit" />
+      <module name="Credit-acseletator.Open-api.main" />
+      <module name="Deals" />
+      <module name="Credit-acseletator.Deals" />
+      <module name="Credit-acseletator.Deals.test" />
+      <module name="Credit-acseletator.Deals.main" />
+    </loaded-modules>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f70c3e44-1787-40a9-91e9-596a9a6d2290" name="Changes" comment="new commit">
+      <change afterPath="$PROJECT_DIR$/Deals/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deals/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gateway/src/main/java/ru/neoflex/Gateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/JWTServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/api/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/api/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/excaption/AuthException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/JwtAuthentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/JwtRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/JwtResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/RefreshJwtRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/services/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/services/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/services/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/services/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/java/ru/neoflex/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTServer/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/aop/LoggingAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deals/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Deals/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deals/src/main/java/ru/neoflex/api/DealApiIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deals/src/main/java/ru/neoflex/api/DealApiIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deals/src/main/java/ru/neoflex/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deals/src/main/java/ru/neoflex/models/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deals/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Deals/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS-Request-Credit/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/MS-Request-Credit/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/api/ConveyorApiImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/api/ConveyorApiImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/services/ConveyorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/services/ConveyorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/services/LoanOfferDTOServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/services/LoanOfferDTOServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS-Request-Credit/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/MS-Request-Credit/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Open-api/src/main/resources/RestCreditСonveyorApi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Open-api/src/main/resources/RestCreditСonveyorApi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Deal">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Deals">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/Open-api">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/MS-Request-Credit">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/Deal">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/Deals">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/gateway">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/JWTServer">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+                <item name="MS-Request-Credit" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+                <item name="MS-Request-Credit" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+                <item name="MS-Request-Credit" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+                <item name="MS-Request-Credit" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Credit-acseletator" type="f1a62948:ProjectNode" />
+                <item name="MS-Request-Credit" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="openshift" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectId" id="2F1MF1lyLeRCPmgGbu62AP9MSMY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MS-Request-Credit/src/main/resources" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator\MS-Request-Credit\src\main\resources" />
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator" />
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator\Deals" />
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator\Deal\src\main\resources" />
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator\Open-api" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ilkalinin\Documents\Обучение\MSA\Credit-acseletator\Deals" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="ru.neoflex.clientApi" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.neoflex.configuration" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Credit-acseletator:MS-Request-Credit [ocBuild]">
+    <configuration name="Credit-acseletator:Deals [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Deals" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Credit-acseletator:MS-Request-Credit [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MS-Request-Credit" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Credit-acseletator:MS-Request-Credit [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MS-Request-Credit" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Credit-acseletator:MS-Request-Credit [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MS-Request-Credit" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Credit-acseletator:MS-Request-Credit [ocBuild]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MS-Request-Credit" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="ocBuild" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Credit-acseletator:MS-Request-Credit [ocBuild]" />
+        <item itemvalue="Gradle.Credit-acseletator:MS-Request-Credit [build]" />
+        <item itemvalue="Gradle.Credit-acseletator:MS-Request-Credit [clean]" />
+        <item itemvalue="Gradle.Credit-acseletator:MS-Request-Credit [bootRun]" />
+        <item itemvalue="Gradle.Credit-acseletator:Deals [build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f70c3e44-1787-40a9-91e9-596a9a6d2290" name="Changes" comment="" />
+      <created>1663655030760</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663655030760</updated>
+    </task>
+    <task id="LOCAL-00001" summary="1">
+      <created>1669719613072</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669719613072</updated>
+    </task>
+    <task id="LOCAL-00002" summary="2">
+      <created>1669900218540</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669900218540</updated>
+    </task>
+    <task id="LOCAL-00003" summary="2">
+      <created>1670016767338</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670016767338</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix LocalDate">
+      <created>1670239696597</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670239696597</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new commit">
+      <created>1670482655229</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670482655229</updated>
+    </task>
+    <task id="LOCAL-00006" summary="new commit">
+      <created>1671109516772</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671109516772</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="106" />
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="37" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <MESSAGE value="2" />
+    <MESSAGE value="fix LocalDate" />
+    <MESSAGE value="new commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="new commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/MS-Request-Credit/src/main/java/ru/neoflex/match/CreditInformationService.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,1407 @@
+Index: Deal/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/resources/application.yml b/Deal/src/main/resources/application.yml
+new file mode 100644
+--- /dev/null	(date 1670486237744)
++++ b/Deal/src/main/resources/application.yml	(date 1670486237744)
+@@ -0,0 +1,25 @@
++server.port: 8084
++Amount: 10000
++Term: 6
++general-rate: 8
++increasing-without-insurance: 3
++increasing-not-salary-client: 1
++sum-insurance: 10000
++spring.jpa.hibernate.ddl-auto: update
++spring.jpa.hibernate.show_sql: true
++spring.datasource:
++  url: 'jdbc:postgresql://localhost:5432/dealDb'
++  username: postgres
++  password: postgres
++  driver-class:
++    jdbc:
++      driver: org.postgresql.Driver
++Conveyor:
++  url: 'http://localhost:8083'
++feign:
++  client:
++    config:
++      default:
++        connectTimeout: 5000
++        readTimeout: 5000
++        loggerLevel: basic
+\ No newline at end of file
+Index: Deal/src/main/java/ru/neoflex/DealApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/DealApplication.java b/Deal/src/main/java/ru/neoflex/DealApplication.java
+new file mode 100644
+--- /dev/null	(date 1670486237724)
++++ b/Deal/src/main/java/ru/neoflex/DealApplication.java	(date 1670486237724)
+@@ -0,0 +1,15 @@
++package ru.neoflex;
++
++import org.springframework.boot.SpringApplication;
++import org.springframework.boot.autoconfigure.SpringBootApplication;
++import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
++import org.springframework.cloud.openfeign.EnableFeignClients;
++
++@SpringBootApplication
++@EnableFeignClients
++@EnableDiscoveryClient
++public class DealApplication {
++    public static void main(String[] args){
++        SpringApplication.run(DealApplication.class, args);
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/services/DealServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/services/DealServiceImpl.java b/Deal/src/main/java/ru/neoflex/services/DealServiceImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237719)
++++ b/Deal/src/main/java/ru/neoflex/services/DealServiceImpl.java	(date 1670486237719)
+@@ -0,0 +1,124 @@
++package ru.neoflex.services;
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++import ru.neoflex.dao.ApplicationDaoImpl;
++import ru.neoflex.dao.ClientDaoImpl;
++import ru.neoflex.dao.CreditDaoImpl;
++import ru.neoflex.dao.PassportDaoImpl;
++import ru.neoflex.models.Application;
++import ru.neoflex.models.Client;
++import ru.neoflex.models.Credit;
++import ru.neoflex.models.Passport;
++
++import java.util.List;
++@Service
++public class DealServiceImpl implements DealService {
++    @Autowired
++    private ClientDaoImpl clientDao;
++    @Autowired
++    private ApplicationDaoImpl applicationDao;
++    @Autowired
++    private CreditDaoImpl creditDao;
++    @Autowired
++    private PassportDaoImpl passportDao;
++    @Override
++    public Client findClientByID(int id) {
++        return clientDao.findClientByID(id);
++    }
++
++    @Override
++    public void addClient(Client client) {
++        clientDao.addClient(client);
++    }
++
++    @Override
++    public void updateClient(Client client) {
++        clientDao.updateClient(client);
++    }
++
++    @Override
++    public void removeClient(int id) {
++        clientDao.removeClient(id);
++    }
++
++    @Override
++    public List<Client> listClients() {
++        return clientDao.listClients();
++    }
++
++    @Override
++    public Credit findCreditByID(int id) {
++        return creditDao.findCreditByID(id);
++    }
++
++    @Override
++    public void addCredit(Credit credit) {
++        creditDao.addCredit(credit);
++    }
++
++    @Override
++    public void updateCredit(Credit credit) {
++        creditDao.updateCredit(credit);
++    }
++
++    @Override
++    public void removeCredit(int id) {
++        creditDao.removeCredit(id);
++    }
++
++    @Override
++    public List<Credit> listCredits() {
++        return creditDao.listCredits();
++    }
++
++    @Override
++    public Passport findPassportByID(int id)  {
++        return passportDao.findPassportByID(id);
++    }
++
++    @Override
++    public void addPassport(Passport passport) {
++        passportDao.addPassport(passport);
++    }
++
++    @Override
++    public void updatePassport(Passport passport) {
++        passportDao.updatePassport(passport);
++    }
++
++    @Override
++    public void removePassport(int id) {
++        passportDao.removePassport(id);
++    }
++
++    @Override
++    public List<Passport> listPassports()  {
++        return passportDao.listPassports();
++    }
++
++    @Override
++    public Application findApplicationByID(int id)  {
++        return applicationDao.findApplicationByID(id);
++    }
++
++    @Override
++    public void addApplication(Application application)  {
++        applicationDao.addApplication(application);
++    }
++
++    @Override
++    public void updateApplication(Application application)  {
++        applicationDao.updateApplication(application);
++    }
++
++    @Override
++    public void removeApplication(int id)  {
++        applicationDao.removeApplication(id);
++    }
++
++    @Override
++    public List<Application> listApplications()  {
++        return applicationDao.listApplications();
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/services/DealService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/services/DealService.java b/Deal/src/main/java/ru/neoflex/services/DealService.java
+new file mode 100644
+--- /dev/null	(date 1670486237714)
++++ b/Deal/src/main/java/ru/neoflex/services/DealService.java	(date 1670486237714)
+@@ -0,0 +1,48 @@
++package ru.neoflex.services;
++
++import ru.neoflex.models.Application;
++import ru.neoflex.models.Client;
++import ru.neoflex.models.Credit;
++import ru.neoflex.models.Passport;
++
++import java.util.List;
++
++public interface DealService {
++    public Client findClientByID(int id);
++
++    public void addClient(Client client);
++
++    public void updateClient(Client client);
++
++    public void removeClient(int id);
++
++    public List<Client> listClients();
++
++    public Credit findCreditByID(int id);
++
++    public void addCredit(Credit credit);
++
++    public void updateCredit(Credit credit);
++
++    public void removeCredit(int id);
++
++    public List<Credit> listCredits();
++    public Passport findPassportByID(int id) ;
++
++    public void addPassport(Passport passport);
++
++    public void updatePassport(Passport passport);
++
++    public void removePassport(int id);
++
++    public List<Passport> listPassports() ;
++    public Application findApplicationByID(int id) ;
++
++    public void addApplication(Application application) ;
++
++    public void updateApplication(Application application) ;
++
++    public void removeApplication(int id) ;
++
++    public List<Application> listApplications() ;
++}
+Index: Deal/src/main/java/ru/neoflex/models/Passport.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/Passport.java b/Deal/src/main/java/ru/neoflex/models/Passport.java
+new file mode 100644
+--- /dev/null	(date 1670486237709)
++++ b/Deal/src/main/java/ru/neoflex/models/Passport.java	(date 1670486237709)
+@@ -0,0 +1,32 @@
++package ru.neoflex.models;
++
++import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
++import jakarta.persistence.*;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++import org.hibernate.annotations.TypeDef;
++
++import java.util.Date;
++@Data
++@NoArgsConstructor
++@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
++@Entity
++@Table(name = "passports")
++public class Passport {
++    @Id
++    @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "passport_id", nullable = false)
++    private long passportId;
++    @Column(name = "series")
++    private String series;
++    @Column(name = "number")
++    private String number;
++    @Column(name = "issue_branch")
++    private String issueBranch;
++    @Column(name = "issue_date")
++    private Date issueDate;
++    @OneToOne(cascade = CascadeType.ALL,
++            fetch = FetchType.EAGER,
++            mappedBy = "passport")
++    private Client client;
++}
+Index: Deal/src/main/java/ru/neoflex/models/Employment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/Employment.java b/Deal/src/main/java/ru/neoflex/models/Employment.java
+new file mode 100644
+--- /dev/null	(date 1670486237705)
++++ b/Deal/src/main/java/ru/neoflex/models/Employment.java	(date 1670486237705)
+@@ -0,0 +1,34 @@
++package ru.neoflex.models;
++
++import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
++import jakarta.persistence.*;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++import org.hibernate.annotations.TypeDef;
++import ru.neoflex.openapi.model.EmploymentDTO;
++
++import java.math.BigDecimal;
++import java.util.List;
++@Data
++@NoArgsConstructor
++@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
++@Entity
++@Table(name = "employments")
++public class Employment {
++    @Id
++    @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "employment_id", nullable = false)
++    private long employmentId;
++    @Enumerated(EnumType.STRING)
++    private EmploymentDTO.EmploymentStatusEnum status;
++    @Column(name = "employer_inn")
++    private String employerInn;
++    @Column(name = "salary")
++    private BigDecimal salary;
++    @Enumerated(EnumType.STRING)
++    private EmploymentDTO.PositionEnum position;
++    @OneToMany(cascade = CascadeType.ALL,
++            fetch = FetchType.EAGER,
++            mappedBy = "employment")
++    private List<Client> clients;
++}
+Index: Deal/src/main/java/ru/neoflex/models/CreditStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/CreditStatus.java b/Deal/src/main/java/ru/neoflex/models/CreditStatus.java
+new file mode 100644
+--- /dev/null	(date 1670486237701)
++++ b/Deal/src/main/java/ru/neoflex/models/CreditStatus.java	(date 1670486237701)
+@@ -0,0 +1,5 @@
++package ru.neoflex.models;
++
++public enum CreditStatus {
++    CALCULATED,ISSUED
++}
+Index: Deal/src/main/java/ru/neoflex/models/Credit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/Credit.java b/Deal/src/main/java/ru/neoflex/models/Credit.java
+new file mode 100644
+--- /dev/null	(date 1670486237696)
++++ b/Deal/src/main/java/ru/neoflex/models/Credit.java	(date 1670486237696)
+@@ -0,0 +1,37 @@
++package ru.neoflex.models;
++
++import jakarta.persistence.*;
++import lombok.NoArgsConstructor;
++
++import java.math.BigDecimal;
++
++@Entity
++@Table(name = "credits")
++@NoArgsConstructor
++public class Credit {
++    @Id
++    @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "credit_id", nullable = false)
++    private long id;
++    @Column(name = "amount")
++    private BigDecimal amount;
++    @Column(name = "term")
++    private int term;
++    @Column(name = "monthly_payment")
++    private BigDecimal monthlyPayment;
++    @Column(name = "rate")
++    private BigDecimal rate;
++    @Column(name = "psk")
++    private BigDecimal psk;
++    @Column(name = "payment_schedule")
++    private BigDecimal paymentSchedule;
++    @Column(name = "insurance_enable")
++    private Boolean insuranceEnable;
++    @Column(name = "salary_client")
++    private Boolean salaryClient;
++    @Enumerated(EnumType.STRING)
++    private CreditStatus creditStatus;
++
++
++
++}
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java'\r\n}\r\n\r\ngroup 'ru.neoflex'\r\nversion '1.0-SNAPSHOT'\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'\r\n    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'\r\n\r\n}\r\n\r\ntest {\r\n    useJUnitPlatform()\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision eff957bb16310760676ee65bcd65a67eb409b79c)
++++ b/build.gradle	(date 1670486237749)
+@@ -10,6 +10,7 @@
+ }
+ 
+ dependencies {
++    implementation 'org.apache.royale.framework:royale-simple-typedef-archetype:0.9.9'
+     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+ 
+Index: Deal/src/main/java/ru/neoflex/models/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/Client.java b/Deal/src/main/java/ru/neoflex/models/Client.java
+new file mode 100644
+--- /dev/null	(date 1670486237691)
++++ b/Deal/src/main/java/ru/neoflex/models/Client.java	(date 1670486237691)
+@@ -0,0 +1,152 @@
++package ru.neoflex.models;
++
++import jakarta.persistence.*;
++import ru.neoflex.openapi.model.ScoringDataDTO;
++
++import java.time.LocalDate;
++
++@Entity
++@Table(name = "clients")
++public class Client {
++    @Id
++    @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "client_id", nullable = false)
++    private long Id;
++    @Column(name = "first_name")
++    private String firstName;
++    @Column(name = "last_name")
++    private String lastName;
++    @Column(name = "middle_name")
++    private String middleName;
++    @Column(name = "email")
++    private String email;
++    @Column(name = "birth_date")
++    private LocalDate birthDate;
++    @Enumerated(EnumType.STRING)
++    private ScoringDataDTO.GenderEnum genderEnum;
++    @Enumerated(EnumType.STRING)
++    private  ScoringDataDTO.MaritalStatusEnum maritalStatusEnum;
++    @Column(name = "dependent_amount")
++    private int dependentAmount;
++    @OneToOne(fetch = FetchType.LAZY)
++    @JoinColumn(name = "passport_id", nullable = false)
++    private Passport passport;
++    @ManyToOne(fetch = FetchType.LAZY)
++    @JoinColumn(name = "employment_id", nullable = true)
++    private Employment employment;
++    @Column(name = "account")
++    private String account;
++
++    public Client(long id, String firstName, String lastName, String middleName, String email, LocalDate birthDate, ScoringDataDTO.GenderEnum genderEnum, ScoringDataDTO.MaritalStatusEnum maritalStatusEnum, int dependentAmount, Passport passport, Employment employment, String account) {
++        Id = id;
++        this.firstName = firstName;
++        this.lastName = lastName;
++        this.middleName = middleName;
++        this.email = email;
++        this.birthDate = birthDate;
++        this.genderEnum = genderEnum;
++        this.maritalStatusEnum = maritalStatusEnum;
++        this.dependentAmount = dependentAmount;
++        this.passport = passport;
++        this.employment = employment;
++        this.account = account;
++    }
++
++    public Client() {
++    }
++
++    public long getId() {
++        return Id;
++    }
++
++    public void setId(long clientIdLong) {
++        this.Id = clientIdLong;
++    }
++
++    public String getFirstName() {
++        return firstName;
++    }
++
++    public void setFirstName(String firstName) {
++        this.firstName = firstName;
++    }
++
++    public String getLastName() {
++        return lastName;
++    }
++
++    public void setLastName(String lastName) {
++        this.lastName = lastName;
++    }
++
++    public String getMiddleName() {
++        return middleName;
++    }
++
++    public void setMiddleName(String middleName) {
++        this.middleName = middleName;
++    }
++
++    public String getEmail() {
++        return email;
++    }
++
++    public void setEmail(String email) {
++        this.email = email;
++    }
++
++    public LocalDate getBirthDate() {
++        return birthDate;
++    }
++
++    public void setBirthDate(LocalDate birthDate) {
++        this.birthDate = birthDate;
++    }
++
++    public ScoringDataDTO.GenderEnum getGenderEnum() {
++        return genderEnum;
++    }
++
++    public void setGenderEnum(ScoringDataDTO.GenderEnum genderEnum) {
++        this.genderEnum = genderEnum;
++    }
++
++    public Passport getPassport() {
++        return passport;
++    }
++
++    public void setPassport(Passport passport) {
++        this.passport = passport;
++    }
++
++    public Employment getEmployment() {
++        return employment;
++    }
++
++    public void setEmployment(Employment employment) {
++        this.employment = employment;
++    }
++
++    public String getAccount() {
++        return account;
++    }
++
++    public void setAccount(String account) {
++        this.account = account;
++    }
++    public ScoringDataDTO.MaritalStatusEnum getMaritalStatusEnum() {
++        return maritalStatusEnum;
++    }
++
++    public void setMaritalStatusEnum(ScoringDataDTO.MaritalStatusEnum maritalStatusEnum) {
++        this.maritalStatusEnum = maritalStatusEnum;
++    }
++
++    public int getDependentAmount() {
++        return dependentAmount;
++    }
++
++    public void setDependentAmount(int dependentAmount) {
++        this.dependentAmount = dependentAmount;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/models/ApplicationStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/ApplicationStatus.java b/Deal/src/main/java/ru/neoflex/models/ApplicationStatus.java
+new file mode 100644
+--- /dev/null	(date 1670486237687)
++++ b/Deal/src/main/java/ru/neoflex/models/ApplicationStatus.java	(date 1670486237687)
+@@ -0,0 +1,16 @@
++package ru.neoflex.models;
++
++import lombok.NoArgsConstructor;
++
++@NoArgsConstructor
++public enum ApplicationStatus {
++    PREAPPROVAL,
++    APROVED,
++    CC_DENIED,
++    CC_APPROVED,
++    PREPARE_DOCUMENTS,
++    DOCUMENT_CREATED,
++    CLIENT_DENIED,
++    DOCUMENT_SIGNED,
++    CREDIT_ISSUED;
++}
+Index: Deal/src/main/java/ru/neoflex/models/Application.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/models/Application.java b/Deal/src/main/java/ru/neoflex/models/Application.java
+new file mode 100644
+--- /dev/null	(date 1670486237682)
++++ b/Deal/src/main/java/ru/neoflex/models/Application.java	(date 1670486237682)
+@@ -0,0 +1,107 @@
++package ru.neoflex.models;
++
++import jakarta.persistence.*;
++import lombok.NoArgsConstructor;
++import org.springframework.data.annotation.Id;
++import ru.neoflex.openapi.model.ApplicationStatusHistoryDTO;
++
++import java.time.LocalDateTime;
++@Entity
++@Table(name="applications")
++@NoArgsConstructor
++public class Application {
++    @Id
++    @GeneratedValue(strategy = GenerationType.AUTO)
++    @Column(name = "application_id", nullable = false)
++    private String id;
++    @ManyToOne(fetch = FetchType.LAZY)
++    @JoinColumn(name = "client_id", nullable = false)
++    private Client client;
++    @ManyToOne(fetch = FetchType.LAZY)
++    @JoinColumn(name = "credit_id", nullable = false)
++    private Credit credit;
++    @Enumerated(EnumType.STRING)
++    private ApplicationStatus status;
++    @Column(name = "creation_date")
++    private LocalDateTime creationDate;
++    @Column(name = "applied_offer")
++    private String applied_offer;
++    @Column(name = "sign_date")
++    private LocalDateTime signDate;
++    @Column(name = "ses_code")
++    private int sesCode;
++    @Enumerated(EnumType.STRING)
++    private ApplicationStatusHistoryDTO.StatusEnum statusHistory;
++
++    public String getId() {
++        return id;
++    }
++
++    public void setId(String id) {
++        this.id = id;
++    }
++
++    public Client getClient() {
++        return client;
++    }
++
++    public void setClient(Client client) {
++        this.client = client;
++    }
++
++    public Credit getCredit() {
++        return credit;
++    }
++
++    public void setCredit(Credit credit) {
++        this.credit = credit;
++    }
++
++    public ApplicationStatus getStatus() {
++        return status;
++    }
++
++    public void setStatus(ApplicationStatus status) {
++        this.status = status;
++    }
++
++    public LocalDateTime getCreationDate() {
++        return creationDate;
++    }
++
++    public void setCreationDate(LocalDateTime creationDate) {
++        this.creationDate = creationDate;
++    }
++
++    public String getApplied_offer() {
++        return applied_offer;
++    }
++
++    public void setApplied_offer(String applied_offer) {
++        this.applied_offer = applied_offer;
++    }
++
++    public LocalDateTime getSignDate() {
++        return signDate;
++    }
++
++    public void setSignDate(LocalDateTime signDate) {
++        this.signDate = signDate;
++    }
++
++    public int getSesCode() {
++        return sesCode;
++    }
++
++    public void setSesCode(int sesCode) {
++        this.sesCode = sesCode;
++    }
++
++    public ApplicationStatusHistoryDTO.StatusEnum getStatusHistory() {
++        return statusHistory;
++    }
++
++    public void setStatusHistory(ApplicationStatusHistoryDTO.StatusEnum statusHistory) {
++        this.statusHistory = statusHistory;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/PassportDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/PassportDaoImpl.java b/Deal/src/main/java/ru/neoflex/dao/PassportDaoImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237677)
++++ b/Deal/src/main/java/ru/neoflex/dao/PassportDaoImpl.java	(date 1670486237677)
+@@ -0,0 +1,54 @@
++package ru.neoflex.dao;
++
++import org.hibernate.HibernateException;
++import org.hibernate.Session;
++import org.hibernate.SessionFactory;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Repository;
++import org.springframework.transaction.annotation.Transactional;
++import ru.neoflex.models.Passport;
++
++import java.util.List;
++@Repository
++@Transactional
++public class PassportDaoImpl implements PassportDao {
++    private static final Logger logger = LoggerFactory.getLogger(ClientDaoImpl.class);
++    @Autowired
++    private SessionFactory sessionFactory;
++    @Override
++    public Passport findPassportByID(int id)  {
++        Integer findPassportID = (Integer) id;
++        Session session = this.sessionFactory.getCurrentSession();
++        Passport passport = (Passport) session.load(Passport.class,findPassportID);
++        return passport;
++    }
++
++    @Override
++    public void addPassport(Passport passport)  {
++        Session session = this.sessionFactory.getCurrentSession();
++        session.persist(passport);
++    }
++
++    @Override
++    public void updatePassport(Passport passport)  {
++        Session session = this.sessionFactory.getCurrentSession();
++        session.update(passport);
++    }
++
++    @Override
++    public void removePassport(int id)  {
++            Integer findPassportById= (Integer)id;
++            Session session = this.sessionFactory.getCurrentSession();
++            Passport passport = session.load(Passport.class,findPassportById);
++            if(passport!=null)session.delete(passport);
++    }
++
++    @Override
++    public List<Passport> listPassports()  {
++        Session session = this.sessionFactory.getCurrentSession();
++        List<Passport> passportList = session.createSQLQuery("Select * from pasports").addEntity(Passport.class).list();
++        return passportList;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/PassportDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/PassportDao.java b/Deal/src/main/java/ru/neoflex/dao/PassportDao.java
+new file mode 100644
+--- /dev/null	(date 1670486237672)
++++ b/Deal/src/main/java/ru/neoflex/dao/PassportDao.java	(date 1670486237672)
+@@ -0,0 +1,19 @@
++package ru.neoflex.dao;
++
++import org.hibernate.HibernateException;
++import ru.neoflex.models.Passport;
++
++import java.util.List;
++
++public interface PassportDao {
++    public Passport findPassportByID(int id) ;
++
++    public void addPassport(Passport passport) ;
++
++    public void updatePassport(Passport passport) ;
++
++    public void removePassport(int id) ;
++
++    public List<Passport> listPassports() ;
++
++}
+Index: Deal/src/main/java/ru/neoflex/dao/EmploymentDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/EmploymentDaoImpl.java b/Deal/src/main/java/ru/neoflex/dao/EmploymentDaoImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237666)
++++ b/Deal/src/main/java/ru/neoflex/dao/EmploymentDaoImpl.java	(date 1670486237666)
+@@ -0,0 +1,53 @@
++package ru.neoflex.dao;
++
++import org.hibernate.Session;
++import org.hibernate.SessionFactory;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Repository;
++import org.springframework.transaction.annotation.Transactional;
++import ru.neoflex.models.Employment;
++
++import java.util.List;
++@Repository
++@Transactional
++public class EmploymentDaoImpl implements EmploymentDao {
++    private static final Logger logger = LoggerFactory.getLogger(ClientDaoImpl.class);
++    @Autowired
++    private SessionFactory sessionFactory;
++    @Override
++    public Employment findEmploymentByID(int id)  {
++        Integer findId=Integer.parseInt(String.valueOf(id));
++        Session session =this.sessionFactory.getCurrentSession();
++        Employment employment = (Employment) session.load(Employment.class, Integer.valueOf(findId));
++        return employment;
++    }
++
++    @Override
++    public void addEmployment(Employment employment)  {
++        Session session =this.sessionFactory.getCurrentSession();
++         session.persist(employment);
++    }
++
++    @Override
++    public void updateEmployment(Employment employment)  {
++        Session session =this.sessionFactory.getCurrentSession();
++        session.update(employment);
++    }
++
++    @Override
++    public void removeEmployment(int id)  {
++        Integer removeId=Integer.parseInt(String.valueOf(id));
++        Session session =this.sessionFactory.getCurrentSession();
++        Employment employment = (Employment) session.load(Employment.class, Integer.valueOf(removeId));
++        if (employment!=null) session.delete(employment);
++    }
++
++    @Override
++    public List<Employment> listEmployments()  {
++        Session session =this.sessionFactory.getCurrentSession();
++        List<Employment> employmentsList= session.createSQLQuery("select * from employments").addEntity(Employment.class).list();
++        return employmentsList;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/EmploymentDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/EmploymentDao.java b/Deal/src/main/java/ru/neoflex/dao/EmploymentDao.java
+new file mode 100644
+--- /dev/null	(date 1670486237660)
++++ b/Deal/src/main/java/ru/neoflex/dao/EmploymentDao.java	(date 1670486237660)
+@@ -0,0 +1,18 @@
++package ru.neoflex.dao;
++
++import org.hibernate.HibernateException;
++import ru.neoflex.models.Employment;
++
++import java.util.List;
++
++public interface EmploymentDao {
++    public Employment findEmploymentByID(int id) ;
++
++    public void addEmployment(Employment employment) ;
++
++    public void updateEmployment(Employment employment) ;
++
++    public void removeEmployment(int id) ;
++
++    public List<Employment> listEmployments() ;
++}
+Index: Deal/src/main/java/ru/neoflex/dao/CreditDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/CreditDaoImpl.java b/Deal/src/main/java/ru/neoflex/dao/CreditDaoImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237654)
++++ b/Deal/src/main/java/ru/neoflex/dao/CreditDaoImpl.java	(date 1670486237654)
+@@ -0,0 +1,53 @@
++package ru.neoflex.dao;
++
++import org.hibernate.Session;
++import org.hibernate.SessionFactory;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Repository;
++import org.springframework.transaction.annotation.Transactional;
++import ru.neoflex.models.Credit;
++
++import java.util.List;
++@Repository
++@Transactional
++public class CreditDaoImpl implements CreditDao{
++    private static final Logger logger = LoggerFactory.getLogger(ClientDaoImpl.class);
++    @Autowired
++    private SessionFactory sessionFactory;
++    @Override
++    public Credit findCreditByID(int id) {
++        Integer findId = (Integer)id;
++        Session session = sessionFactory.getCurrentSession();
++        Credit credit = (Credit)session.load(Credit.class,findId);
++        return credit;
++    }
++
++    @Override
++    public void addCredit(Credit credit) {
++        Session session = sessionFactory.getCurrentSession();
++        session.persist(credit);
++    }
++
++    @Override
++    public void updateCredit(Credit credit) {
++        Session session = sessionFactory.getCurrentSession();
++        session.update(credit);
++    }
++
++    @Override
++    public void removeCredit(int id) {
++        Integer findId = (Integer)id;
++        Session session = sessionFactory.getCurrentSession();
++        Credit credit = (Credit) session.load(Credit.class, findId);
++        if(credit!=null)session.remove(credit);
++    }
++
++    @Override
++    public List<Credit> listCredits() {
++        Session session = sessionFactory.getCurrentSession();
++        List<Credit> creditList = session.createSQLQuery("Select * from credits").addEntity(Credit.class).list();
++        return creditList;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/CreditDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/CreditDao.java b/Deal/src/main/java/ru/neoflex/dao/CreditDao.java
+new file mode 100644
+--- /dev/null	(date 1670486237649)
++++ b/Deal/src/main/java/ru/neoflex/dao/CreditDao.java	(date 1670486237649)
+@@ -0,0 +1,17 @@
++package ru.neoflex.dao;
++
++import ru.neoflex.models.Credit;
++
++import java.util.List;
++
++public interface CreditDao {
++    public Credit findCreditByID(int id);
++
++    public void addCredit(Credit credit);
++
++    public void updateCredit(Credit credit);
++
++    public void removeCredit(int id);
++
++    public List<Credit> listCredits();
++}
+Index: Deal/src/main/java/ru/neoflex/dao/ClientDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/ClientDaoImpl.java b/Deal/src/main/java/ru/neoflex/dao/ClientDaoImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237644)
++++ b/Deal/src/main/java/ru/neoflex/dao/ClientDaoImpl.java	(date 1670486237644)
+@@ -0,0 +1,54 @@
++package ru.neoflex.dao;
++
++import org.hibernate.Session;
++import org.hibernate.SessionFactory;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Repository;
++import org.springframework.transaction.annotation.Transactional;
++import ru.neoflex.models.Client;
++
++import java.util.List;
++
++@Repository
++@Transactional
++public class ClientDaoImpl implements ClientDao {
++    private static final Logger logger = LoggerFactory.getLogger(ClientDaoImpl.class);
++    @Autowired
++    private SessionFactory sessionFactory;
++    @Override
++    public Client findClientByID(int id) {
++        Integer findId=(Integer)id;
++        Session session =this.sessionFactory.getCurrentSession();
++        Client client = (Client) session.load(Client.class, findId);
++        return client;
++    }
++
++    @Override
++    public void addClient(Client client) {
++        Session session = this.sessionFactory.getCurrentSession();
++        session.persist(client);
++    }
++
++    @Override
++    public void updateClient(Client client) {
++        Session session =this.sessionFactory.getCurrentSession();
++        session.update(client);
++    }
++
++    @Override
++    public void removeClient(int id) {
++        Integer removeId=(Integer)id;
++        Session session =this.sessionFactory.getCurrentSession();
++        Client client = (Client) session.load(Client.class, removeId);
++        if (client!=null) session.delete(client);
++    }
++
++    @Override
++    public List<Client> listClients() {
++        Session session =this.sessionFactory.getCurrentSession();
++        List<Client> clientList= session.createSQLQuery("select * from clients").addEntity(Client.class).list();
++        return clientList;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/ClientDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/ClientDao.java b/Deal/src/main/java/ru/neoflex/dao/ClientDao.java
+new file mode 100644
+--- /dev/null	(date 1670486237640)
++++ b/Deal/src/main/java/ru/neoflex/dao/ClientDao.java	(date 1670486237640)
+@@ -0,0 +1,17 @@
++package ru.neoflex.dao;
++
++import ru.neoflex.models.Client;
++
++import java.util.List;
++
++public interface ClientDao {
++    public Client findClientByID(int id);
++
++    public void addClient(Client client);
++
++    public void updateClient(Client client);
++
++    public void removeClient(int id);
++
++    public List<Client> listClients();
++}
+Index: Deal/src/main/java/ru/neoflex/dao/ApplicationDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/ApplicationDaoImpl.java b/Deal/src/main/java/ru/neoflex/dao/ApplicationDaoImpl.java
+new file mode 100644
+--- /dev/null	(date 1670486237635)
++++ b/Deal/src/main/java/ru/neoflex/dao/ApplicationDaoImpl.java	(date 1670486237635)
+@@ -0,0 +1,55 @@
++package ru.neoflex.dao;
++
++
++import org.hibernate.Session;
++import org.hibernate.SessionFactory;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Repository;
++import org.springframework.transaction.annotation.Transactional;
++import ru.neoflex.models.Application;
++
++import java.util.List;
++@Repository
++@Transactional
++public class ApplicationDaoImpl implements ApplicationDao {
++    private static final Logger logger = LoggerFactory.getLogger(ClientDaoImpl.class);
++    @Autowired
++    private SessionFactory sessionFactory;
++
++    @Override
++    public Application findApplicationByID(int id)  {
++        Integer findId = (Integer) id;
++        Session session = sessionFactory.getCurrentSession();
++        Application application = (Application) session.load(Application.class, findId);
++        return application;
++    }
++
++    @Override
++    public void addApplication(Application application)  {
++        Session session = sessionFactory.getCurrentSession();
++        session.persist(application);
++    }
++
++    @Override
++    public void updateApplication(Application application)  {
++        Session session = sessionFactory.getCurrentSession();
++        session.update(application);
++    }
++
++    @Override
++    public void removeApplication(int id)  {
++        Integer findId = (Integer) id;
++        Session session = sessionFactory.getCurrentSession();
++        Application application = (Application) session.load(Application.class, findId);
++        if (application != null) session.delete(application);
++    }
++
++    @Override
++    public List<Application> listApplications()  {
++        Session session = sessionFactory.getCurrentSession();
++        List<Application> applicationList= session.createSQLQuery("Select * from applications").addEntity(Application.class).list();
++        return applicationList;
++    }
++}
+Index: Deal/src/main/java/ru/neoflex/dao/ApplicationDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/dao/ApplicationDao.java b/Deal/src/main/java/ru/neoflex/dao/ApplicationDao.java
+new file mode 100644
+--- /dev/null	(date 1670486237631)
++++ b/Deal/src/main/java/ru/neoflex/dao/ApplicationDao.java	(date 1670486237631)
+@@ -0,0 +1,17 @@
++package ru.neoflex.dao;
++
++import ru.neoflex.models.Application;
++
++import java.util.List;
++
++public interface ApplicationDao {
++    public Application findApplicationByID(int id) ;
++
++    public void addApplication(Application application) ;
++
++    public void updateApplication(Application application) ;
++
++    public void removeApplication(int id) ;
++
++    public List<Application> listApplications() ;
++}
+Index: Deal/src/main/java/ru/neoflex/configuration/HibernateConf.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/configuration/HibernateConf.java b/Deal/src/main/java/ru/neoflex/configuration/HibernateConf.java
+new file mode 100644
+--- /dev/null	(date 1670486237625)
++++ b/Deal/src/main/java/ru/neoflex/configuration/HibernateConf.java	(date 1670486237625)
+@@ -0,0 +1,55 @@
++package ru.neoflex.configuration;
++
++import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.core.env.Environment;
++import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
++import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
++
++import javax.sql.DataSource;
++import java.util.Properties;
++
++@Configuration
++public class HibernateConf {
++    @Autowired
++     Environment environment;
++    @Bean
++    public LocalSessionFactoryBean sessionFactory() {
++        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
++        sessionFactory.setDataSource(dataSource());
++        sessionFactory.setPackagesToScan("ru.neoflex.models");
++        sessionFactory.setHibernateProperties(hibernateProperties());
++
++        return sessionFactory;
++    }
++
++    @Bean
++    public DataSource dataSource() {
++        BasicDataSource dataSource = new BasicDataSource();
++        dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class.jdbc.driver"));
++        dataSource.setUrl(environment.getProperty("spring.datasource.url"));
++        dataSource.setUsername(environment.getProperty("spring.datasource.username"));
++        dataSource.setPassword(environment.getProperty("spring.datasource.password"));
++
++        return dataSource;
++    }
++
++
++    private final Properties hibernateProperties() {
++        Properties hibernateProperties = new Properties();
++        hibernateProperties.setProperty(
++                "hibernate.hbm2ddl.auto", "update");
++        hibernateProperties.setProperty(
++                "hibernate.dialect", "org.hibernate.dialect.PostgreSQL81Dialect");
++
++        return hibernateProperties;
++    }
++    @Bean
++    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
++        return new PersistenceExceptionTranslationPostProcessor();
++    }
++}
++
++
+Index: Deal/src/main/java/ru/neoflex/configuration/FeingConfiguration.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/configuration/FeingConfiguration.java b/Deal/src/main/java/ru/neoflex/configuration/FeingConfiguration.java
+new file mode 100644
+--- /dev/null	(date 1670486237619)
++++ b/Deal/src/main/java/ru/neoflex/configuration/FeingConfiguration.java	(date 1670486237619)
+@@ -0,0 +1,14 @@
++package ru.neoflex.configuration;
++
++import feign.Contract;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++
++@Configuration
++public class FeingConfiguration {
++    @Bean
++    public Contract feignContract() {
++        return new Contract.Default();
++    }
++
++}
+Index: Deal/src/main/java/ru/neoflex/clientApi/FeingConveyor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/clientApi/FeingConveyor.java b/Deal/src/main/java/ru/neoflex/clientApi/FeingConveyor.java
+new file mode 100644
+--- /dev/null	(date 1670486237613)
++++ b/Deal/src/main/java/ru/neoflex/clientApi/FeingConveyor.java	(date 1670486237613)
+@@ -0,0 +1,16 @@
++package ru.neoflex.clientApi;
++
++import org.springframework.cloud.openfeign.FeignClient;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestBody;
++import ru.neoflex.openapi.model.LoanApplicationRequestDTO;
++import ru.neoflex.openapi.model.LoanOfferDTO;
++
++import java.util.List;
++
++@FeignClient(name="feingConveyor",path = "/conveyor", url = "${Conveyor.url}")
++public interface FeingConveyor {
++    @PostMapping
++    List<LoanOfferDTO> offers(@RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO);
++
++}
+\ No newline at end of file
+Index: Deal/src/main/java/ru/neoflex/api/DealApiIml.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/src/main/java/ru/neoflex/api/DealApiIml.java b/Deal/src/main/java/ru/neoflex/api/DealApiIml.java
+new file mode 100644
+--- /dev/null	(date 1670486237606)
++++ b/Deal/src/main/java/ru/neoflex/api/DealApiIml.java	(date 1670486237606)
+@@ -0,0 +1,55 @@
++package ru.neoflex.api;
++
++import org.hibernate.HibernateException;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.http.ResponseEntity;
++import org.springframework.stereotype.Controller;
++import ru.neoflex.clientApi.FeingConveyor;
++import ru.neoflex.models.Application;
++import ru.neoflex.models.Client;
++import ru.neoflex.models.Passport;
++import ru.neoflex.openapi.api.DealApi;
++import ru.neoflex.openapi.model.FinishRegistrationRequestDTO;
++import ru.neoflex.openapi.model.LoanApplicationRequestDTO;
++import ru.neoflex.openapi.model.LoanOfferDTO;
++import ru.neoflex.services.DealServiceImpl;
++
++import java.util.List;
++@Controller
++public class DealApiIml implements DealApi{
++    @Autowired
++    private DealServiceImpl dealService;
++    @Autowired
++    private FeingConveyor feingConveyor;
++    @Override
++    public ResponseEntity<List<LoanOfferDTO>> dealApplicationPost(LoanApplicationRequestDTO loanApplicationRequestDTO)  {
++        Client client = new Client();
++        client.setBirthDate(loanApplicationRequestDTO.getBirthdate());
++        client.setFirstName(loanApplicationRequestDTO.getFirstName());
++        client.setLastName(loanApplicationRequestDTO.getLastName());
++        client.setMiddleName(loanApplicationRequestDTO.getMiddleName());
++        client.setEmail(loanApplicationRequestDTO.getEmail());
++        Passport passport = new Passport();
++        passport.setNumber(loanApplicationRequestDTO.getPassportNumber());
++        passport.setSeries(loanApplicationRequestDTO.getPassportSeries());
++        client.setPassport(passport);
++        Application application = new Application();
++        application.setClient(client);
++        dealService.addPassport(passport);
++        dealService.addClient(client);
++        dealService.addApplication(application);
++        feingConveyor.offers(loanApplicationRequestDTO);
++        ResponseEntity<List<LoanOfferDTO>> listResponseEntity = ResponseEntity.ok().body(null);
++        return listResponseEntity;
++    }
++
++    @Override
++    public ResponseEntity<Void> dealCalculateApplicationIdPut(Long applicationId, FinishRegistrationRequestDTO finishRegistrationRequestDTO) {
++        return null;
++    }
++
++    @Override
++    public ResponseEntity<Void> dealOfferPut(LoanOfferDTO loanOfferDTO) {
++        return null;
++    }
++}
+Index: Deal/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Deal/build.gradle b/Deal/build.gradle
+new file mode 100644
+--- /dev/null	(date 1670486294700)
++++ b/Deal/build.gradle	(date 1670486294700)
+@@ -0,0 +1,34 @@
++plugins {
++    id 'java'
++    id 'org.springframework.boot' version '3.0.0'
++    id 'io.spring.dependency-management' version '1.1.0'
++}
++
++group 'ru.neoflex'
++version '1.0-SNAPSHOT'
++sourceCompatibility = '17'
++repositories {
++    mavenCentral()
++}
++
++dependencies {
++    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.5'
++    implementation 'org.springframework.boot:spring-boot-starter:2.6.5'
++    implementation 'org.springframework.data:spring-data-commons:2.6.5'
++    compileOnly 'org.projectlombok:lombok:1.18.20'
++    annotationProcessor 'org.projectlombok:lombok:1.18.20'
++    implementation 'org.slf4j:slf4j-api:2.0.5'
++    compileOnly  project(":Open-api")
++    implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
++    implementation 'io.swagger.core.v3:swagger-annotations:2.2.0'
++    implementation 'org.openapitools:jackson-databind-nullable:0.2.2'
++    implementation 'com.vladmihalcea:hibernate-types-52:2.20.0'
++    implementation 'org.hibernate:hibernate-core:5.4.2.Final'
++    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.5'
++    implementation 'org.apache.tomcat:tomcat-dbcp:9.0.1'
++    runtimeOnly 'org.postgresql:postgresql'
++    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.10.RELEASE'
++}
++test {
++    useJUnitPlatform()
++}
+\ No newline at end of file

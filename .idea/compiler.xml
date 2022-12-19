@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="Credit-acseletator.Deals.main" />
+        <module name="Credit-acseletator.MS-Request-Credit.main" />
+        <module name="Credit-acseletator.JWTServer.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Credit-acseletator.Deal" target="17" />
+      <module name="Credit-acseletator.Deal.main" target="17" />
+      <module name="Credit-acseletator.Deal.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
