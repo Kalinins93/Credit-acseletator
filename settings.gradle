@@ -4,4 +4,5 @@ include 'MS-Request-Credit'
 include 'Deals'
 include 'gateway'
 include 'JWTServer'
+include 'Application'
 

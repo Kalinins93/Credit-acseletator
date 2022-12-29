@@ -95,13 +95,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditDTO'
-  /conveyor/offers:
+  /application:
     description: "Расчёт возможных условий кредита."
     post:
       tags:
         - "rest-conveyor-offers-request"
-      summary: "Сообщение-запрос на расчёт возможных условий кредита."
-      operationId: "RestReceiveRequestConveyorOffers"
+      summary: "Сообщение-запрос на расчёт возможных условий кредита"
+      operationId: "RestReceiveApplication"
       requestBody:
         description: "Запрос RestReceiveRequestConveyorOffers"
         required: false
@@ -118,6 +118,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LoanOfferDTO'
+  /application/offers:
+    description: "Расчёт возможных условий кредита."
+    put:
+      tags:
+        - "rest-conveyor-offers-request"
+      summary: "Сообщение-запрос на расчёт возможных условий кредита."
+      operationId: "RestReceiveRequestConveyorOffers"
+      requestBody:
+        description: "Запрос RestReceiveRequestConveyorOffers"
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanOfferDTO'
+      responses:
+        '200':
+          description: "Успешный ответ о принятие сообщения"
 components:
   schemas:
     LoanApplicationRequestDTO:
