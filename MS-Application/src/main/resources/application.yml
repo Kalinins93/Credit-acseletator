@@ -1,0 +1,14 @@
+business-property:
+  amount: 10000
+  term: 6
+  general-rate: 8
+  increasing-without-insurance: 3
+  increasing-not-salary-client: 1
+  sum-insurance: 10000
+server.port: 8083
+client:
+  url: 'http://deal.apps-crc.testing'
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER

@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.eclipse.jkube.kubernetes' version '1.8.0'
+    id 'org.eclipse.jkube.openshift' version '1.8.0'
+}
+
+group 'ru.neoflex'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.data:spring-data-commons'
+    implementation  project(":Open-api")
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.2'
+    implementation  project(":MS-Request-Credit")
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    implementation 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR12'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
